@@ -1,12 +1,14 @@
 import java.util.Scanner;
 
 public class Bank {
+    static Scanner scanner = new Scanner(System.in);
+    static double balance = 0;
     public static void runBank() {
         //declare variables
-        double balance = 0;
+
         int choice;
         boolean isRunning = true;
-        Scanner scanner = new Scanner(System.in);
+
 
         //welcome message
         System.out.println("***********************************");
@@ -22,22 +24,77 @@ public class Bank {
             System.out.print("Select option (1-4): ");
             choice = scanner.nextInt();
 
-            if(choice < 1 || choice > 4) {
-                System.out.println("Invalid Choice");
-            }
-            if (choice == 4) {
-                System.out.println("Thank You. GOODBYE");
-                isRunning = false;
+            switch (choice){
+                case 1 -> showBalance(balance);
+                case 2 -> deposit();
+                case 3 -> withdraw();
+                case 4 -> {
+                    System.out.println("******************");
+                    System.out.println("Thank You. GOODBYE");
+                    System.out.println("******************");
+                    isRunning = false;
+                }
+                default -> {
+                    System.out.println("--------------");
+                    System.out.println("Invalid Choice");
+                    System.out.println("--------------");
+                }
+
             }
         } while(isRunning);
 
-        //  showBalance
-        //  deposit
-        //  withdraw
-        //  exit
-        //exit message
-
         scanner.close();
 
+    }
+    static void showBalance(double balance) {
+        System.out.println("----------------------");
+        System.out.printf("Account balance: $%.2f\n", balance);
+        System.out.println("----------------------");
+    }
+    static void deposit(){
+        double amount;
+        boolean validAmount = false;
+        do {
+            System.out.print("Enter amount to deposit: ");
+            amount = scanner.nextDouble();
+
+            if (amount <= 0) {
+                System.out.println("--------------------------");
+                System.out.println("Amount cannot be 0 or less");
+                System.out.println("--------------------------");
+            }
+            else{
+                validAmount = true;
+                balance += amount;
+                System.out.println("----------------------------");
+                System.out.printf("Successfully deposited $%.2f\n", amount);
+                System.out.println("----------------------------");
+            }
+        } while (!validAmount);
+    }
+    static void withdraw() {
+        double amount;
+        boolean validAmount = false;
+        do {
+            System.out.print("Enter amount to withdraw: ");
+            amount = scanner.nextDouble();
+
+            if (amount <= 0) {
+                System.out.println("-----------------------------");
+                System.out.println("You cannot withdraw 0 or less");
+                System.out.println("-----------------------------");
+            } else if (amount > balance) {
+                System.out.println("------------------");
+                System.out.println("Insufficient funds");
+                System.out.println("------------------");
+                break;
+            } else {
+                balance -= amount;
+                System.out.println("-----------------------------");
+                System.out.printf("Successfully withdrawn: $%.2f\n", amount);
+                System.out.println("-----------------------------");
+                validAmount = true;
+            }
+        } while(!validAmount);
     }
 }
