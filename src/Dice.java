@@ -7,6 +7,7 @@ public class Dice {
         Random random = new Random();
         int dice = 0;
 
+
         System.out.println("*****************************************");
         System.out.println("Welcome to the Java Dice Roller Programme");
         System.out.println("*****************************************");
@@ -21,10 +22,21 @@ public class Dice {
                 System.out.println("-------------");
             }
         }
+        int[] rolls = new int[dice];
+
+        for (int i = 0; i < dice; i++){
+            rolls[i] = random.nextInt(1, 7);
+        }
+        for (int roll : rolls){
+            showDice(roll);
+            System.out.println("You rolled " + roll);
+        }
+
+
         //output
     }
-    static void showDice() {
-        switch() {
+    static void showDice(int roll) {
+        switch(roll) {
             case 1 -> System.out.println("""
                       _ _ _ _ _
                     |           |
