@@ -1,9 +1,9 @@
 import java.util.Scanner;
 
 public class Bank {
-    static Scanner scanner = new Scanner(System.in);
+
     static double balance = 0;
-    public static void runBank() {
+    public static void runBank(Scanner scanner) {
         //declare variables
 
         int choice;
@@ -26,8 +26,8 @@ public class Bank {
 
             switch (choice){
                 case 1 -> showBalance(balance);
-                case 2 -> deposit();
-                case 3 -> withdraw();
+                case 2 -> deposit(scanner);
+                case 3 -> withdraw(scanner);
                 case 4 -> {
                     System.out.println("******************");
                     System.out.println("Thank You. GOODBYE");
@@ -43,15 +43,13 @@ public class Bank {
             }
         } while(isRunning);
 
-        scanner.close();
-
     }
     static void showBalance(double balance) {
         System.out.println("----------------------");
         System.out.printf("Account balance: $%.2f\n", balance);
         System.out.println("----------------------");
     }
-    static void deposit(){
+    static void deposit(Scanner scanner){
         double amount;
         boolean validAmount = false;
         do {
@@ -72,7 +70,7 @@ public class Bank {
             }
         } while (!validAmount);
     }
-    static void withdraw() {
+    static void withdraw(Scanner scanner) {
         double amount;
         boolean validAmount = false;
         do {

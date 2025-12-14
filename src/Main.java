@@ -14,8 +14,8 @@ public class Main {
         System.out.print("Select a program to run (q to quit): ");
         program = scanner.next().toLowerCase().charAt(0);
         switch (program) {
-            case '1' -> Bank.runBank();
-            case '2' -> Dice.rollDice();
+            case '1' -> Bank.runBank(scanner);
+            case '2' -> Dice.rollDice(scanner);
             case 'q' -> System.out.println("Good bye👋");
             default -> {
                 System.out.println("--------------");

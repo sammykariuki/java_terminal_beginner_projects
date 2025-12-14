@@ -2,8 +2,8 @@ import java.util.Scanner;
 import java.util.Random;
 public class Dice {
 
-    public static void rollDice() {
-        Scanner scanner = new Scanner(System.in);
+    public static void rollDice(Scanner scanner) {
+
         Random random = new Random();
         int dice = 0;
         int total = 0;
@@ -53,10 +53,6 @@ public class Dice {
         System.out.println("*******************************");
         System.out.println("Thank you for rolling with us👋");
         System.out.println("*******************************");
-
-
-
-        scanner.close();
     }
     static void showDice(int roll) {
         switch(roll) {
